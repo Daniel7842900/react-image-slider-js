@@ -14,14 +14,10 @@
 }
 
 .previous-btn-container {
-    width: 80px;
-    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid
+    margin-right: 1rem;
 }
 
 .navigation-btn {
@@ -31,11 +27,10 @@
 }
 
 .next-btn-container {
-    width: 80px;
-    height: 80px;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
 }
 
 .main-image-container {
