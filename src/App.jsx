@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
+import { TbLoaderQuarter } from "react-icons/tb";
 import "./App.css";
 
 function App() {
@@ -37,7 +38,10 @@ function App() {
           {data.length > 0 ? (
             <img src={data[2].url} alt="Image" />
           ) : (
-            <div>Loading Image...</div>
+            <div className="loading-container">
+              <TbLoaderQuarter className="loading-icon" />
+              <span>Loading Image...</span>
+            </div>
           )}
         </div>
         <div className="next-btn-container">
