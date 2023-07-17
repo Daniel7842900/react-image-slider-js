@@ -3,19 +3,25 @@ import axios from "axios";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
 import "./App.css";
 
-const imageEndPoint = "https://picsum.photos/350/250";
-
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     getImages();
   }, []);
 
   const getImages = async () => {
-    const response = await axios.get(imageEndPoint);
-    const responseURL = response.request.responseURL;
-    setData(responseURL);
+    const newData = [];
+    for (let index = 0; index < 5; index++) {
+      const randomNumber = Math.floor(Math.random() * 20) * index;
+      const imageEndPoint = `https://picsum.photos/id/${randomNumber}/350/250`;
+      const response = await axios.get(imageEndPoint);
+      const responseURL = response.request.responseURL;
+      const image = { id: index, url: responseURL };
+      newData.push(image);
+    }
+
+    setData(newData);
   };
 
   return (
@@ -28,7 +34,11 @@ function App() {
           <AiOutlineLeftCircle className="navigation-btn" />
         </div>
         <div className="main-image-container">
-          {data && <img src={data} alt="Image" />}
+          {data.length > 0 ? (
+            <img src={data[2].url} alt="Image" />
+          ) : (
+            <div>Loading Image...</div>
+          )}
         </div>
         <div className="next-btn-container">
           <AiOutlineRightCircle className="navigation-btn" />
