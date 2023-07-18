@@ -27,23 +27,15 @@ function App() {
     setData(newData);
   };
 
-  const handlePreviousOnClick = () => {
+  const handleOnClick = (direction) => {
     setCurrentIdx((index) => {
-      if (index > 0) {
-        return index - 1;
-      } else {
-        return index;
+      let newIdx;
+      if (direction === "previous") {
+        newIdx = index > 0 ? index - 1 : index;
+      } else if (direction === "next") {
+        newIdx = index < IMAGECOUNT - 1 ? index + 1 : index;
       }
-    });
-  };
-
-  const handleNextOnClick = () => {
-    setCurrentIdx((index) => {
-      if (index < IMAGECOUNT - 1) {
-        return index + 1;
-      } else {
-        return index;
-      }
+      return newIdx;
     });
   };
 
@@ -56,7 +48,7 @@ function App() {
         <div className="previous-btn-container">
           <AiOutlineLeftCircle
             className="navigation-btn"
-            onClick={handlePreviousOnClick}
+            onClick={() => handleOnClick("previous")}
           />
         </div>
         <div className="main-image-container">
@@ -72,7 +64,7 @@ function App() {
         <div className="next-btn-container">
           <AiOutlineRightCircle
             className="navigation-btn"
-            onClick={handleNextOnClick}
+            onClick={() => handleOnClick("next")}
           />
         </div>
       </div>
